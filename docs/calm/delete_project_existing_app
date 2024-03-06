@@ -1,0 +1,130 @@
+---
+title: "Delete Project with existing Application"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# How to delete Project with existing application
+
+##	Product Configuration:
+
+1. Calm 3.7.2.1 on PC2023.4
+
+## What is the issue:
+
+The customer wanted to delete a project with existing Calm application and retain the provisioned VM.
+
+  ![](delete-project-images/centos-app.png)
+
+This is the VM provisioned through Calm application
+
+  ![](delete-project-images/centos-vm-pc.png)
+
+## Solution
+
+### Detach VM from Calm Management
+
+1.	Navigate into the Calm application.  Click on **Soft Delete** to detach the VM from Calm Management
+
+  ![](delete-project-images/centos-app-soft-delete.png)
+
+2.  The application is no longer available under **My Apps**
+
+  ![](delete-project-images/calm-apps.png)
+
+3.	Navigate to **Infrastructure->Compute & Storage**.  Filter the VM.  Notice the VM is now associated with _internal project instead of Test Project.
+
+  ![](delete-project-images/centos-vm-test-project.png)
+
+### Import VM into brownfield app into another project
+
+1. Reference: [Create Brownfield Application](https://portal.nutanix.com/page/documents/details?targetId=Self-Service-Admin-Operations-Guide-v3_7_2_1:nuc-applications-create-brownfield-app-t.html)
+
+2.	Create a new project: Test 2 & associate with the infrastructure provider and environment.
+
+3.	Navigate to **NCM Self Service**.  Click on **Blueprints**
+
+4.	Click on **Import Brownfield App**
+
+  ![](delete-project-images/import-brownfield-app.png)
+
+5.	Fill in the following.  Select **Test 2 Project**.  Click on **Proceed**
+
+  ![](delete-project-images/import-brownfield-app-test2-project.png)
+
+6.	On the left side of the screen, click on + to add service
+
+  ![](delete-project-images/add-service.png)
+
+7.	On the right side of the screen, select **Brownfield**
+
+  ![](delete-project-images/brownfield-service.png)
+
+8.	Click on **Select VMs**
+
+  ![](delete-project-images/select-vm.png)
+
+9.	Filter the VM.  Select the VM.  Click on **Done**
+  
+  ![](delete-project-images/select-vm2.png)
+
+10.	Click on **Add new Credential**
+
+  ![](delete-project-images/add-new-credential.png)
+
+11.	Fill in the credential
+
+  ![](delete-project-images/fill-in-credential.png)
+
+12.	On the right side of the screen, click on **Save**
+
+  ![](delete-project-images/save-blueprint.png)
+
+13.	Click on **Launch Blueprint**
+
+  ![](delete-project-images/launch-blueprint.png)
+
+14.	The VM is attached to the **Centos7-AD-Brownfield** Calm application
+
+  ![](delete-project-images/centos-test2-project.png)
+
+15.	Click on **Infrastructure** in the application switcher.  Click on **Compute & Storage**.  Click on **VM**.  Filter by the VM name.  Notice the VM is associated to **Test 2 Project** now
+
+  ![](delete-project-images/vm-test2-project.png)
+
+###	Delete existing Test Project
+
+1.	Navigate to **Self Service**
+
+  ![](delete-project-images/app-switcher.png)
+
+2.	Delete away the blueprint(s) & runbook(s) associated to the project
+
+  ![](delete-project-images/delete-blueprint.png)
+
+3.	Navigate to **Admin Center**
+
+  ![](delete-project-images/app-switcher-admin-center.png)
+
+4.  Click on **Projects**.
+
+5.	Drill into the Project.
+
+  ![](delete-project-images/project-list.png)
+
+6.	Click on **Environment**.  Click on to delete the environment.
+
+  ![](delete-project-images/delete-environment.png)
+
+7.	Select the project & click on **Delete**
+
+  ![](delete-project-images/delete-project.png)
+
+8.	Click on **Delete**
+
+  ![](delete-project-images/confirm-delete-project.png)
+
+9.	The project is deleted successfully
+
+  ![](delete-project-images/project-deleted.png)
