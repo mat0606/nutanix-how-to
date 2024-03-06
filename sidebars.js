@@ -11,7 +11,5 @@ module.exports = {
       label: 'NCM Self Service',
       items: ["calm/delete_project_existing_app"]
     },
-    
-    
   ],
 };
